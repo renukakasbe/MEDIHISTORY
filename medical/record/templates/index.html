@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" >
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap.min.css" >
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap.min.js" ></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js" > </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">MediHistory</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/" >Home <span class="sr-only">(current)</span></a>
+      </li>
+
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Add Memeber/History
+
+        </a>
+
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href=""></a>
+
+
+
+          <a class="dropdown-item" href="load_form" >Add Family Member</a>
+
+            <a class="dropdown-item" href="show" >show Details</a>
+
+
+          <a class="dropdown-item" href="addMedicalRecord" >Add Medical History</a>
+      </li>
+       <li class="nav-item dropdown">
+             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               View
+             </a>
+           </div>
+
+             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                <a class="dropdown-item" href="show">View Family</a>
+               <a class="dropdown-item" href="viewMedicalRecords" > View Medical History</a>
+           </li>
+    </ul>
+
+  </div>
+</nav>
+<div class="container" style="width:100%;height:auto;" align="center">
+   <div class="card text-dark bg-info mb-3">
+     <div class="card-header bg-success">
+      <h4> <b>Add Family Member</b></h4>
+     </div>
+ <div class="card-body">
+<form action="add" method="post">
+  <div class="form-group row">
+      {% csrf_token %}
+    <label for="name" class="col-sm-2 col-form-label">Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" required>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="age" class="col-sm-2 col-form-label">Age</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="age" name="age" placeholder="Enter Age" required>
+    </div>
+  </div>
+   <div class="form-group row">
+      <label for="bloodGroup" class="col-sm-2 col-form-label">Blood Group</label>
+      <div class="col-sm-2">
+        <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="bloodGroup" name="bloodGroup" required>
+          <option selected>Select Blood Group</option>
+          <option value="A-">A-</option>
+          <option value="A+">A+</option>
+          <option value="B-">B-</option>
+           <option value="B+">B+</option>
+            <option value="O-">O</option>
+            <option value="O+">O+</option>
+            <option value="AB-">AB-</option>
+            <option value="AB+">AB+</option>
+        </select>
+      </div>
+    </div>
+    <fieldset class="form-group">
+        <div class="row">
+          <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gender" id="gender" value="Male" checked>
+              <label class="form-check-label" for="gender">
+                  Male
+              </label>
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gender" id="gender" value="Female">
+              <label class="form-check-label" for="gender">
+                 Female
+              </label>
+            </div>
+
+        </div>
+      </fieldset>
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <button type="submit" class="btn btn-success">Add Member</button>
+    </div>
+  </div>
+</form>
+     </div>
+   </div>
+</div>
+
+</body>
+</html>

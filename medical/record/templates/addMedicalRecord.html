@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<htm>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" >
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap.min.css" >
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap.min.js" ></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js" > </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">MediHistory</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/" >Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Add Memeber/History
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="load_form" >Add Family Member</a>
+          <a class="dropdown-item" href="addMedicalRecord" >Add Medical History</a>
+      </li>
+
+       <li class="nav-item dropdown">
+             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               View
+             </a>
+             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="show">View Family</a>
+               <a class="dropdown-item" href="viewMedicalRecords" > View Medical History</a>
+           </li>
+    </ul>
+  </div>
+</nav>
+<div class="container" style="width:100%;height:auto;" align="center">
+
+   <div class="card text-dark bg-info mb-3">
+     <div class="card-header bg-success">
+      <h4> <b>Add Medical Record</b></h4>
+     </div>
+     <div class="card-body">
+<form action="saveMedicalRecord" method="post">
+       {% csrf_token %}
+  <div class="form-group row">
+
+    <label for="name" class="col-sm-2 col-form-label">symptoms Observed</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="symptoms" name="symptoms" placeholder="Enter symptoms Details" required>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="age" class="col-sm-2 col-form-label">Medicines</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="medicines" name="medicines" placeholder="Enter medicines prescribed" required>
+    </div>
+  </div>
+   <div class="form-group row">
+      <label for="bloodGroup" class="col-sm-2 col-form-label">Select Family Member</label>
+      <div class="col-sm-2">
+        <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="membername" name="membername" required>
+          <option selected>Select Member</option>
+            {% for i in person %}
+          <option value={{i.name}}>{{i.name}}</option>
+            {% endfor %}
+        </select>
+      </div>
+    </div>
+
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <button type="submit" class="btn btn-success">Add Medical Record</button>
+    </div>
+  </div>
+</form>
+     </div>
+   </div>
+</div>
+
+</body>
+</html>
